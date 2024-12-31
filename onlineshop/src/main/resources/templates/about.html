@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shops Information</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&display=swap" rel="stylesheet">
+    <style>
+        /* General Styles */
+        body {
+            font-family: 'Playfair Display', serif;
+            background-color: #fff;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #b29559; /* Luxury Gold */
+            margin-bottom: 40px;
+        }
+
+        /* Shop Card Styles */
+        .shop-card {
+            background-color: #fdf5e6; /* Luxury Pale Yellow */
+            border: 1px solid #fceabb; /* Border in slightly darker yellow */
+            border-radius: 10px;
+            padding: 20px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .shop-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .shop-card h2 {
+            color: #b29559; /* Luxury Gold */
+            margin-bottom: 10px;
+        }
+
+        .shop-card p {
+            color: #555;
+            line-height: 1.6;
+        }
+
+        .shop-location {
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        /* Button Styles */
+        .btn-contact {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #b29559; /* Luxury Gold */
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+            margin-top: 15px;
+            transition: background-color 0.3s ease;
+        }
+
+        .btn-contact:hover {
+            background-color: #d4af37; /* Darker gold on hover */
+        }
+
+        /* Media Queries */
+        @media (max-width: 768px) {
+            .shop-card {
+                padding: 15px;
+            }
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Our Exclusive Shops</h1>
+
+        <!-- Shop 1 -->
+        <div class="shop-card">
+            <h2>Luxury Fashion Boutique</h2>
+            <p>Discover the latest in luxury fashion at the Luxury Fashion Boutique. Our curated collection features top designer brands and exclusive pieces for those who desire elegance and sophistication.</p>
+            <p class="shop-location">Location: 123 Fashion Street, New York, NY</p>
+            <a href="mailto:contact@luxuryfashion.com" class="btn-contact">Contact Us</a>
+        </div>
+
+        <!-- Shop 2 -->
+        <div class="shop-card">
+            <h2>Golden Jewelry Emporium</h2>
+            <p>At Golden Jewelry Emporium, we offer a stunning array of fine jewelry pieces, from elegant gold necklaces to dazzling diamond rings. Perfect for those looking to add a touch of sparkle to their lives.</p>
+            <p class="shop-location">Location: 456 Jewel Avenue, Los Angeles, CA</p>
+            <a href="mailto:info@goldenjewelry.com" class="btn-contact">Contact Us</a>
+        </div>
+
+        <!-- Shop 3 -->
+        <div class="shop-card">
+            <h2>Exquisite Home Décor</h2>
+            <p>Transform your home with our exquisite collection of home décor items. From luxurious textiles to unique furnishings, each piece is crafted to bring beauty and comfort into your space.</p>
+            <p class="shop-location">Location: 789 Homeway Drive, Miami, FL</p>
+            <a href="mailto:support@exquisitehome.com" class="btn-contact">Contact Us</a>
+        </div>
+
+    </div>
+
+</body>
+</html>

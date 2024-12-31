@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Home Page</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link rel="stylesheet" th:href="@{/ass/home/swiper-bundle.min.css}">
+    <link rel="stylesheet" th:href="@{/ass/home/vendor.css}">
+    <link rel="stylesheet" th:href="@{/ass/home/style.css}">
+    <link rel="stylesheet" th:href="@{/ass/home/bootstrap.min.css}">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KK94CHFLLe+nY2dmCWGMq91rCGa5gtU4mk92HdvYe+M/SXH301p5ILy+dN9+nJOZ" crossorigin="anonymous">
+    <style>
+        
+        .btnsearch {
+            background-color: #fa9119; /* Pale yellow */
+            color: #000; /* Black text */
+            border: none; /* Remove border */
+            padding: 5px 10px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    
+        .btnsearch:hover {
+            background-color: #fceabb; /* Slightly darker pale yellow on hover */
+        }
+        /* General Navbar Styling */
+  .navbar-nav .nav-item .nav-link {
+      display: flex; /* Make the link a flex container */
+      align-items: center; /* Vertically align text and icon */
+      gap: 5px; /* Add space between the icon and text */
+      color: #333; /* Default text color */
+      text-decoration: none; /* Remove underline */
+      padding: 10px 15px; /* Adjust padding */
+      transition: color 0.3s ease; /* Smooth transition on hover */
+  }
+  
+  .navbar-nav .nav-item .nav-link:hover {
+      color: #fa9119; /* Luxury gold color on hover */
+  }
+  
+  .material-symbols-outlined {
+      font-size: 20px; /* Icon size */
+      line-height: 1; /* Ensures the icon is not misaligned */
+  }
+  
+  .nav-item.active .nav-link {
+      color: #fa9119; /* Active link color */
+  }
+  
+  .menu-list {
+      list-style: none; /* Remove bullet points */
+      margin: 0;
+      padding: 0;
+  }
+  
+  .dropdown-content {
+      display: none; /* Hide the dropdown initially */
+      position: absolute;
+      background-color: #fdf5e6; /* Luxury pale yellow */
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+      border-radius: 5px;
+      padding: 10px;
+  }
+  
+  .nav-item:hover .dropdown-content {
+      display: block; /* Show dropdown on hover */
+  }
+  
+  .dropdown-content a {
+      display: block;
+      color: #333;
+      padding: 8px 10px;
+      text-decoration: none;
+      transition: background 0.3s ease;
+  }
+  
+  .dropdown-content a:hover {
+      background-color: #fa9119; /* Slightly darker pale yellow */
+  }
+  
+  /* Container and Layout */
+  .products-carousel {
+          padding: 20px;
+          background-color: #fdf5e6; /* Pale Yellow Background */
+      }
+
+      /* Main containers */
+.table-container, .form-container {
+    background-color: #fdf5e6; /* Luxury pale yellow */
+    padding: 20px; /* Space inside the containers */
+    border-radius: 10px; /* Smooth, rounded corners */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Soft shadow for depth */
+    margin: 20px 0; /* Space around the containers */
+    width: 100%;
+    max-width: 1200px; /* Limit the width of containers */
+    margin: 0 auto; /* Center the containers on the page */
+}
+
+/* Tables inside table-container */
+.table-container table {
+    width: 100%; /* Full width for the table */
+    border-collapse: collapse; /* Remove gaps between table borders */
+    background-color: #fffbea; /* Slightly different pale yellow for table background */
+    border-radius: 10px;
+    overflow: hidden; /* To maintain rounded corners */
+}
+
+.table-container table th, .table-container table td {
+    padding: 12px; /* Space inside table cells */
+    border: 1px solid #e0d8b0; /* Light border for table cells */
+    text-align: left; /* Align text to the left */
+    color: #5c4f30; /* Elegant dark color for text */
+}
+
+.table-container table th {
+    background-color: #f0e5c9; /* Slightly darker pale yellow for header cells */
+    font-weight: bold;
+    text-transform: uppercase; /* Optional: capitalize header text */
+}
+
+/* Form inside form-container */
+.form-container form {
+    display: flex;
+    flex-direction: column; /* Stack form elements vertically */
+}
+
+.form-container form label {
+    color: #5c4f30; /* Elegant dark color for labels */
+    font-weight: bold;
+    margin-bottom: 8px; /* Space between label and input */
+}
+
+.form-container form input, .form-container form select, .form-container form textarea {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #e0d8b0; /* Light border for form fields */
+    border-radius: 5px; /* Rounded corners for form fields */
+    background-color: #fffbea; /* Pale yellow background inside inputs */
+    color: #5c4f30; /* Dark text color */
+}
+
+.form-container form button {
+    padding: 10px 20px;
+    background-color: #f0e5c9; /* Slightly darker yellow for the button */
+    border: none;
+    border-radius: 5px;
+    color: #5c4f30; /* Dark color for text */
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.form-container form button:hover {
+    background-color: #e0d8b0; /* Darker shade for hover effect */
+}
+.order-forms {
+    font-family: 'Georgia', serif; /* Elegant serif font */
+    color: #5c4f30; /* Dark color for text */
+    font-size: 1.2em; /* Slightly larger text for readability */
+    margin-bottom: 20px; /* Space below the section */
+    text-align: center; /* Center the text */
+    text-transform: uppercase; /* Uppercase letters for a formal look */
+    letter-spacing: 1.5px; /* Slight letter spacing for elegance */
+}
+
+.order-forms h1 {
+    font-size: 2.5em; /* Larger font for headings */
+    color: #4d3f27; /* Darker, luxurious color for headings */
+    margin-bottom: 15px; /* Space below the heading */
+}
+
+.order-forms p {
+    font-size: 1em; /* Normal font size for paragraph text */
+    color: #705a40; /* Softer tone for descriptions */
+    line-height: 1.6em; /* Line height for better readability */
+    margin-bottom: 10px; /* Space below paragraphs */
+}
+
+/* Order Items Section */
+.order-items {
+    font-family: 'Georgia', serif; /* Same elegant font for consistency */
+    color: #5c4f30;
+    font-size: 1.2em;
+    margin-top: 20px; /* Space above the section */
+}
+
+.order-items h2 {
+    font-size: 2em;
+    color: #4d3f27; /* Darker heading color */
+    margin-bottom: 15px;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+}
+
+.order-items ul {
+    list-style-type: none; /* Remove default bullets */
+    padding: 0; /* Remove default padding */
+}
+
+.order-items ul li {
+    background-color: #fffbea; /* Light yellow background for items */
+    border: 1px solid #e0d8b0; /* Light border */
+    padding: 12px 15px; /* Padding inside each item */
+    margin-bottom: 10px; /* Space between items */
+    border-radius: 8px; /* Rounded corners */
+    color: #5c4f30; /* Text color */
+    font-size: 1em;
+    transition: background-color 0.3s ease;
+}
+
+.order-items ul li:hover {
+    background-color: #f0e5c9; /* Slightly darker yellow on hover */
+}
+
+.order-items ul li span {
+    font-weight: bold; /* Bold for emphasis */
+    color: #4d3f27;
+}
+      
+  
+      
+  
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container-fluid">
+            <div class="row py-3 border-bottom">
+                <!-- Logo Section -->
+                <div class="col-sm-4 col-lg-3 text-center text-sm-start">
+                    <div class="main-logo">
+                        <a href="#">
+                            <img src="ass/home/logo.png" alt="logo" class="img-fluid">
+                        </a>
+                        <h3><strong>Vango</strong></h3>
+                    </div>
+                </div>
+                <!-- Search Bar -->
+                <div class="col-sm-6 offset-sm-2 offset-md-0 col-lg-5 d-none d-lg-block">
+                    <div class="search-bar row bg-light p-2 my-2 rounded-4">
+                        <!-- <div class="col-md-4 d-none d-md-block">
+                            <select class="form-select border-0 bg-transparent">
+                                <option>All Categories</option>
+                                <option>Groceries</option>
+                                <option>Drinks</option>
+                                <option>Chocolates</option>
+                            </select>
+                        </div> -->
+                        <div class="col-11 col-md-7">
+                          <form id="search-form" class="text-center" th:action="@{/mainsys/search}" method="get">
+                              <div class="d-flex">
+                                  <input type="text" class="form-control border-0 bg-transparent" placeholder="Search for more products..." name="itemname" required/>
+                                  <input type="submit" value="Search" class="btnsearch">
+                              </div>
+                            </div>
+                            <div class="col-1">
+                                <span class="material-symbols-outlined">manage_search</span>
+                            </div>
+                        </div>
+                          </form>
+                      
+                </div>
+                <!-- Profile & Cart Section -->
+                <div class="col-sm-8 col-lg-4 d-flex justify-content-end gap-5 align-items-center mt-4 mt-sm-0 justify-content-center justify-content-sm-end">
+                    <div class="cart text-end d-none d-lg-block dropdown">
+                        <button class="border-0 bg-transparent d-flex flex-column gap-2 lh-1" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasCart" aria-controls="offcanvasCart">
+                            <span class="material-symbols-outlined">account_circle</span><a href="#">My Profile</a>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Navigation Menu -->
+        <div class="container-fluid">
+            <div class="row py-3">
+                <div class="d-flex justify-content-center justify-content-sm-between align-items-center">
+                    <nav class="main-menu d-flex navbar navbar-expand-lg">
+                        <!-- Navbar Toggler for Mobile View -->
+                        <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                            <span class="navbar-toggler-icon"></span>
+                        </button>
+                        <!-- Offcanvas Menu -->
+                        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                            <div class="offcanvas-header justify-content-center">
+                                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                            </div>
+                            <div class="offcanvas-body">
+                                <select class="filter-categories border-0 mb-0 me-5">
+                                    <option>Shop by Departments</option>
+                                    <option>Groceries</option>
+                                    <option>Drinks</option>
+                                    <option>Chocolates</option>
+                                </select>
+                                <ul class="navbar-nav justify-content-end menu-list list-unstyled d-flex gap-md-3 mb-0">
+                                    <li class="nav-item active">
+                                        <a th:href="@{/mainsys/homepage}" class="nav-link">
+                                            <span class="material-symbols-outlined">home</span>Home
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                      <a href="#" class="nav-link">
+                                        <span class="material-symbols-outlined">category</span></span>Category
+                                      </a>
+                                      <div class="dropdown-content">
+                                        <form th:action="@{/mainsys/searchcategory}" method="get" id="categoryForm">
+                                            <input type="hidden" name="itemcategory" id="categoryInput">
+                                        </form>
+                                        <a href="#" th:each="category : ${categories}" th:data-category="${category.categoryName}" th:text="${category.categoryName}"></a>
+                                    </div>
+                                  </li>
+                                    <li class="nav-item">
+                                        <a th:href="@{/mainsys/showCart}" class="nav-link">
+                                            <span class="material-symbols-outlined">shopping_cart</span>Add to Cart
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="#" class="nav-link">
+                                            <span class="material-symbols-outlined">inventory_2</span>Products
+                                        </a>
+                                    </li>
+                                    <li class="nav-item dropdown">
+                                        <a href="#" class="nav-link">About</a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a th:href="@{/order/userhistory}" class="nav-link">History</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <div class="main-container"></div>
+        <h1 style="text-align: center;">Order Products</h1>
+        <div class="table-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Product Name</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="addtoCartproduct : ${addtoCartProducts}">
+                        <td th:text="${addtoCartproduct.product.productName}"></td>
+                        <td th:text="${addtoCartproduct.productquality}"></td>
+                        <td th:text="${addtoCartproduct.product.price}"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <h1 style="text-align: center;">Order Form</h1>
+	 <div class="form-container">
+	        <form th:action="@{/order/placeOrder}" method="post">
+
+	            <div>
+	                <label for="orderproductqty">Order Product Quantity</label>
+	                <input type="number" id="orderproductqty" name="orderproductqty" th:value="*{orderproductqty}" required readonly>
+	            </div>
+	            <div>
+	                <label for="totalAmount">Total Amount</label>
+	                <input type="number" id="totalAmount" name="totalAmount" th:value="*{totalAmount}" required readonly>
+	            </div>
+	            <div>
+	                <label for="paymenttype">Payment Type</label>
+	                <input type="text" id="paymenttype" name="paymenttype" th:value="${paymenttype}" required readonly>
+	            </div>
+	            <div>
+			        <label for="customeraddress">Customer Address:</label>
+			        <input type="text" id="customeraddress" name="customeraddress" th:value="${customeraddress}" required="required">
+			    </div>
+	            <div>
+                    <label for="datetime">Date and Time</label>
+                    <input type="datetime-local" name="datetime" id="datetime-buy" required>
+                </div>
+	                <div>
+	                    <label>Payment Type:</label>
+	                    <div class="payment-options" id="payment-options">
+	                        <div class="payment-option" data-payment-type="masterCard">
+	                            <img th:src="@{/image/mastercard.png}" alt="MasterCard">
+	                        </div>
+	                        <div class="payment-option" data-payment-type="PayPal">
+	                            <img th:src="@{/image/paypal.png}" alt="PayPal">
+	                        </div>
+	                        <div class="payment-option" data-payment-type="kpay">
+	                            <img th:src="@{/image/kpay.png}" alt="kpay">
+	                        </div>
+	                        <div class="payment-option" data-payment-type="cbpay">
+	                            <img th:src="@{/image/cbpay.png}" alt="cbpay">
+	                        </div>
+	                        <div class="payment-option" data-payment-type="wavepay">
+	                            <img th:src="@{/image/wavepay.png}" alt="wavepay">
+	                        </div>
+	                    </div>
+	                    
+	                </div>
+	                <div>
+	                    <button type="submit" class="place-order">Place Order</button>
+	                </div>
+	            
+	        </form>
+	    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const paymentOptions = document.querySelectorAll('.payment-option');
+            paymentOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    paymentOptions.forEach(opt => opt.classList.remove('selected'));
+                    option.classList.add('selected');
+                    document.getElementById('paymenttype').value = option.getAttribute('data-payment-type');
+                });
+            });
+        });
+    </script>
+    
+    
+
+      
+    <script th:src="@{/ass/home/jquery-1.11.0.min.js}"></script>
+    <script th:src="@{/ass/home/swiper-bundle.min.js}"></script>
+    <script th:src="@{/ass/home/bootstrap.bundle.min.js}"></script>
+    <script th:src="@{/ass/home/plugins.js}"></script>
+    <script th:src="@{/ass/home/script.js}"></script>      
+      
+</body>
+</html>
+
+
+
+
+  

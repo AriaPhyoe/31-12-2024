@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waiting Room</title>
+    
+    <style>
+       * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, #f8ecc2, #f9dfa0); /* Soft gradient background */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow: hidden;
+}
+
+.center-content {
+    text-align: center;
+    background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
+    padding: 30px;
+    border-radius: 20px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    animation: fadeIn 1.5s ease-in-out, float 3s infinite ease-in-out;
+    max-width: 400px;
+    width: 100%;
+}
+
+h1 {
+    font-size: 2.5rem;
+    color: #333;
+    margin-bottom: 20px;
+    animation: fadeIn 1.8s ease-in-out;
+}
+
+p {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    color: #555;
+    animation: fadeIn 2s ease-in-out;
+    letter-spacing: 0.5px;
+    line-height: 1.5;
+}
+
+button {
+    padding: 15px 30px;
+    font-size: 1rem;
+    color: #fff;
+    background: linear-gradient(90deg, #d4af37, #b89c2e);
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    animation: pulse 2s infinite;
+    position: relative;
+    overflow: hidden;
+}
+
+button:before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 300%;
+    height: 300%;
+    background: rgba(255, 255, 255, 0.2);
+    transition: all 0.75s ease;
+    border-radius: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    z-index: 0;
+}
+
+button:hover:before {
+    transform: translate(-50%, -50%) scale(1);
+}
+
+button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+button span {
+    position: relative;
+    z-index: 1;
+}
+
+/* Keyframes for animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+}
+
+    </style>
+</head>
+<body>
+    <div class="center-content">
+        <h1 th:text="'Coming Soon...'">Coming Soon...</h1>
+        <p th:text="'Please wait while we process your request from Admin...'">Please wait while we process your request from Admin...</p>
+        <button id="okay-btn" th:text="'Okay'">Okay</button>
+    </div>
+
+    <script>
+      document.getElementById('okay-btn').addEventListener('click', function() {
+        alert('Thank you for waiting!');
+    });
+    </script>
+</body>
+</html>

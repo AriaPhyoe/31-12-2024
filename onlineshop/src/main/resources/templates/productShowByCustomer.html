@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+   <head>
+      <!-- Basic -->
+      <meta charset="utf-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <!-- Mobile Metas -->
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+      <!-- Site Metas -->
+      <meta name="keywords" content="" />
+      <meta name="description" content="" />
+      <meta name="author" content="" />
+      <link rel="shortcut icon" href="images/favicon.png" type="">
+      <title>Products Show</title>
+      <!-- bootstrap core css -->
+      <link rel="stylesheet" type="text/css" href="css/productbootstrap.css" th:href="@{/css/productbootstrap.css}" />
+      <!-- Font Awesome style -->
+      <link href="css/productfont-awesome.min.css" th:href="@{/css/productfont-awesome.min.css}" rel="stylesheet" />
+      <!-- Custom styles for this template -->
+      <link href="css/productstyle.css" th:href="@{/css/productstyle.css}" rel="stylesheet" />
+      <!-- Responsive style -->
+      <link href="css/productresponsive.css" th:href="@{/css/productresponsive.css}" rel="stylesheet" />
+	  <style>
+		body {
+		    font-family: 'Poppins', sans-serif;
+		    background-color: #f8f6f1; /* Pale yellow background */
+		    color: #333;
+		    margin: 0;
+		    padding: 0;
+		}
+
+		.container {
+		    padding: 20px;
+		}
+
+		/* Heading styles */
+		.heading_center h2 {
+		    color: #5a4d4d;
+		    font-size: 2.5rem;
+		    font-weight: 600;
+		    margin-bottom: 40px;
+		}
+
+		.heading_center h2 span {
+		    color: #bfa96a; /* Luxurious gold accent */
+		}
+
+		/* Product carousel container */
+		.products-carousel {
+		    display: flex;
+		    overflow-x: auto;
+		    scroll-behavior: smooth;
+		    padding: 20px 0;
+		    margin: 0 -20px;
+		}
+
+		.products-carousel::-webkit-scrollbar {
+		    display: none; /* Hide scrollbar */
+		}
+
+		/* Product card container */
+		.div-container {
+		    min-width: 300px;
+		    margin-right: 20px;
+		    background-color: #fff;
+		    border-radius: 12px;
+		    padding: 15px;
+		    box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.1);
+		    transition: transform 0.3s ease-in-out;
+		    cursor: pointer;
+		}
+
+		.div-container:hover {
+		    transform: translateY(-10px);
+		}
+
+		.div-container img {
+		    width: 100%;
+		    height: auto;
+		    border-radius: 8px;
+		    margin-bottom: 15px;
+		}
+
+		/* Product details */
+		.menu {
+		    text-align: center;
+		}
+
+		.menu h2 {
+		    color: #333;
+		    font-size: 1.5rem;
+		    margin-bottom: 10px;
+		    font-weight: 600;
+		}
+
+		.menu p {
+		    color: #777;
+		    font-size: 1rem;
+		}
+
+		.price-container {
+		    margin-top: 10px;
+		    font-weight: 500;
+		}
+
+		.price {
+		    font-size: 1.2rem;
+		    color: #5a4d4d;
+		}
+
+		.price-value {
+		    font-size: 1.5rem;
+		    color: #bfa96a; /* Luxurious gold for price */
+		}
+
+		/* Heart icon */
+		.cute-icon {
+		    margin-top: 15px;
+		}
+
+		.cute-icon i {
+		    color: #e57373;
+		    font-size: 1.2rem;
+		    transition: color 0.3s ease-in-out;
+		}
+
+		.cute-icon i:hover {
+		    color: #ff6f61;
+		}
+
+		/* Responsive design */
+		@media (max-width: 768px) {
+		    .div-container {
+		        min-width: 250px;
+		    }
+
+		    .menu h2 {
+		        font-size: 1.2rem;
+		    }
+
+		    .price {
+		        font-size: 1rem;
+		    }
+
+		    .price-value {
+		        font-size: 1.2rem;
+		    }
+		}
+
+	  </style>
+   </head>
+   <body class="sub_page">
+      
+      <section class="inner_page_head">
+         <div class="container_fuild">
+            <div class="row">
+               <div class="col-md-12">
+                  <div class="full">
+                     <h3>Product Collections</h3>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+      <!-- end inner page section -->
+      <!-- product section -->
+	  <section class="product_section layout_padding">
+	     <div class="container">
+	        <div class="heading_container heading_center">
+	           <h2>
+	              Our <span>products</span>
+	           </h2>
+	        </div>
+	        <div class="products-carousel">
+	           <div class="swiper-wrapper" th:each="product : ${productlist}" th:data-product-id="${product.productId}">
+	              <!-- Individual product item -->
+	              <div class="div-container swiper-slide">
+	                 <img th:src="@{'/images/' + ${product.image}}" alt="Item Image" width="150" height="100"/>
+	                 <div class="menu">
+	                    <h2 th:text="${product.productName}">Product Name</h2>
+	                    <p th:text="${product.description}">Product Description</p>
+	                    <div class="price-container">
+	                       <p class="price">Price</p>
+	                       <p class="price-value" th:text="${product.price}">Price</p>
+	                    </div>
+	                    <!-- Cute Icon -->
+	                    <div class="cute-icon">
+	                       <i class="fa fa-heart"></i> <span></span>
+	                    </div>
+	                 </div>
+	              </div>
+	              <!-- End of product loop -->
+	           </div>
+	        </div>
+	     </div>
+	  </section>
+      <!-- end product section -->
+      <!-- footer section -->
+	  <script>
+	  			document.addEventListener('DOMContentLoaded', function() {
+	  			    const containers = document.querySelectorAll('.div-container');
+	  			    containers.forEach(container => {
+	  			        container.addEventListener('click', function() {
+	  			            const productId = this.getAttribute('data-product-id');
+	  			            if (productId) {
+	  			                window.location.href = '/mainsys/detailitem/' + productId;
+	  			            }
+	  			        });
+	  			    });
+	  			    
+	  			});
+				
+				document.querySelector('.next-btn').addEventListener('click', () => {
+				    document.querySelector('.products-carousel').scrollBy({
+				        left: 300,
+				        behavior: 'smooth'
+				    });
+				});
+
+				document.querySelector('.prev-btn').addEventListener('click', () => {
+				    document.querySelector('.products-carousel').scrollBy({
+				        left: -300,
+				        behavior: 'smooth'
+				    });
+				});
+	  			
+	  			
+	  			
+	  	</script>
+      <script src="js/productjquery-3.4.1.min.js" th:src="@{/js/productjquery-3.4.1.min.js}"></script>
+      <!-- popper js -->
+      <script src="js/productpopper.min.js" th:src="@{/js/productpopper.min.js}"></script>
+      <!-- bootstrap js -->
+      <script src="js/productbootstrap.js" th:src="@{/js/productbootstrap.js}"></script>
+      <!-- custom js -->
+      <script src="js/productcustom.js" th:src="@{/js/productcustom.js}"></script>
+   </body>
+</html>

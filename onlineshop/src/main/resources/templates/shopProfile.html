@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Information</title>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f0f4fa;
+            margin: 0; /* Remove margin for full width */
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 95vh;
+        }
+        .container {
+            background-color: #f7f9fc;
+            max-width: 600px;
+            width: 100%;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e0e0e0;
+            text-align: center;
+            position: relative; /* Allow positioning of the update profile tag */
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .header h2 {
+            color: #5e5a79;
+            font-size: 1.8em;
+            margin: 0; /* Remove margin for better alignment */
+        }
+        .back-icon {
+            font-size: 1.5em; /* Adjust icon size */
+            color: #5e5a79;
+            text-decoration: none; /* Remove underline */
+            position: absolute; /* Position at the top left */
+            left: 20px;
+            top: 20px;
+            transition: color 0.3s ease;
+        }
+        .back-icon:hover {
+            color: #4a485d; /* Change color on hover */
+        }
+        .header button {
+            padding: 10px 20px;
+            background-color: #9088d4;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 0.9em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .header button:hover {
+            background-color: #7a70bc;
+        }
+        .form-group {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            text-align: left;
+        }
+        .form-group label {
+            font-weight: bold;
+            color: #444;
+            margin-right: 10px;
+            flex-basis: 40%;
+        }
+        .form-group p {
+            font-size: 1em;
+            color: #333;
+            padding: 10px 15px;
+            background-color: #f9f9f9;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            flex-basis: 60%;
+            text-align: left;
+        }
+        .update-profile {
+            position: absolute; /* Positioning at the bottom */
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #5e5a79;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 10px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: background-color 0.3s ease;
+        }
+        .update-profile:hover {
+            background-color: #4a485d;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <a th:href="@{/shop/main}" class="back-icon">&#8592; Back</a> <!-- Back icon -->
+    <div class="container">
+       
+        <div class="header">
+            <h2>Shop Admin Information</h2>
+        </div>
+        
+        <!-- Display Admin Information -->
+        <div class="form-group" th:each="shop : ${shop}">
+            <label for="shop-id">Admin ID</label>
+            <p th:text="${shop.shopId}">12345</p>
+        </div>
+        <div class="form-group" th:each="shop : ${shop}">
+            <label for="firstname">First Name</label>
+            <p th:text="${shop.firstname}">John</p>
+        </div>
+        <div class="form-group" th:each="shop : ${shop}">
+            <label for="lastname">Last Name</label>
+            <p th:text="${shop.lastname}">Doe</p>
+        </div>
+        <div class="form-group" th:each="shop : ${shop}">
+            <label for="email">Email</label>
+            <p th:text="${shop.email}">admin@example.com</p>
+        </div>
+        <div class="form-group">
+            <label for="role">Role</label>
+            <p>Shop Administrator</p>
+        </div>
+        
+        <!--<a th:href="@{/admin/updateprofile/{id}(id=${shop.shopId})}" class="update-profile">Update Profile</a>-->
+    </div>
+</body>
+</html>

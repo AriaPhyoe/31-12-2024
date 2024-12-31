@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Admin Information</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f0f4fa;
+            margin: 0; /* Remove default margin */
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh; /* Full height */
+        }
+        .container {
+            background-color: #f7f9fc;
+            max-width: 500px;
+            width: 100%;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e0e0e0;
+            text-align: center;
+        }
+        .header {
+            margin-bottom: 20px;
+        }
+        .header h2 {
+            color: #6a5acd; /* Pale purple-blue color */
+            font-size: 1.8em;
+            margin: 0;
+        }
+        .form-group {
+            margin-bottom: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start; /* Align labels to the left */
+            text-align: left;
+        }
+        .form-group label {
+            font-weight: bold;
+            color: #444;
+            margin-bottom: 5px; /* Space between label and input */
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            font-size: 1em;
+            transition: border-color 0.3s ease;
+        }
+        .form-group input:focus {
+            border-color: #6a5acd; /* Highlight border on focus */
+            outline: none; /* Remove default outline */
+        }
+        .submit-btn {
+            background-color: #6a5acd; /* Pale purple-blue color */
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 1em;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .submit-btn:hover {
+            background-color: #5c4db1; /* Darker shade on hover */
+        }
+        .back-icon {
+            position: absolute; /* Positioning at the top left */
+            left: 20px;
+            top: 20px;
+            font-size: 1.2em;
+            color: #6a5acd;
+            text-decoration: none; /* Remove underline */
+        }
+        .back-icon:hover {
+            color: #5c4db1; /* Darker shade on hover */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <a href="admin-info.html" class="back-icon">&#8592; Back</a> <!-- Back icon -->
+        <div class="header">
+            <h2>Update Admin Information</h2>
+        </div>
+        <form th:action="@{/admin/updateprofile/{id}(id=${admin.adminId})}" method="post"  th:object="${admin}"> 
+            <div class="form-group">
+                <label for="firstname">First Name</label>
+                <input type="text" id="firstname" name="firstname" th:field="*{firstname}" required>
+            </div>
+            <div class="form-group">
+                <label for="lastname">Last Name</label>
+                <input type="text" id="lastname" name="lastname" th:field="*{lastname}" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" th:field="*{email}" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" th:field="*{password}" required>
+            </div>
+            <!--<div class="form-group">
+                <label for="role">Role</label>
+                <input type="text" id="role" name="role" th:value="${admin.role}" required>
+            </div>-->
+            <button type="submit" class="submit-btn">Update</button>
+        </form>
+    </div>
+
+</body>
+</html>

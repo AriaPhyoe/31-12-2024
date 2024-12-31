@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
+    <title>Customer Profile</title>
+    <style>
+        body {
+            margin-top: 20px;
+            color: #333;
+            background-color: #f9f5e7; /* Pale luxury yellow background */
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .main-body {
+            padding: 20px;
+        }
+
+        .card {
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15); /* Softer shadow for elegance */
+            border: none;
+            border-radius: 15px;
+            background-color: #fffbe7; /* Soft pale yellow for a more luxurious feel */
+            overflow: hidden;
+            transition: box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 25px;
+            max-width: 850px;
+            margin: 0 auto; /* Center the card */
+            position: relative; /* For positioning the button at the bottom */
+        }
+
+        .card:hover {
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+
+        .profile-image {
+            flex: 0 0 200px;
+            text-align: center;
+        }
+
+        .profile-image img {
+            border-radius: 50%;
+            width: 150px;
+            border: 4px solid #dfc27d; /* Golden luxury border */
+        }
+
+        .profile-info {
+            flex: 1;
+            padding-left: 20px;
+            width: 100%;
+        }
+
+        h4, h6 {
+            margin: 0;
+            color: #6b5843; /* Rich brown for text headings */
+            font-weight: 600; /* Slightly bolder text for headings */
+        }
+
+        .text-secondary {
+            color: #9a8f79 !important; /* Subtle secondary color for text */
+            font-style: italic;
+        }
+
+        hr {
+            margin: 1rem 0;
+            border-top: 1px solid #dfc27d; /* Golden tone for dividers */
+        }
+
+        a.btn-info {
+            background-color: #c69c6d; /* Warm gold for buttons */
+            border-color: #c69c6d;
+            padding: 0.75rem 1.5rem;
+            color: #fff;
+            text-transform: uppercase;
+            font-weight: 600;
+            border-radius: 8px;
+            transition: background-color 0.3s ease;
+            display: inline-block;
+            margin-top: 20px;
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.2); /* Elegant shadow */
+        }
+
+        a.btn-info:hover {
+            background-color: #b58956;
+        }
+
+        /* For improved text decoration */
+        h6.mb-0 {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-weight: 500;
+            color: #917754;
+        }
+
+        .col-sm-3 {
+            font-weight: 500;
+            color: #7f6b52;
+        }
+
+        .col-sm-9.text-secondary {
+            font-size: 1.1rem;
+        }
+
+        .profile-info div.row:hover {
+            background-color: #f2ead8;
+            border-radius: 10px;
+            padding: 0.5rem;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        /* Style for the logout button at the bottom right */
+        .logout-container {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+        }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+        <div class="main-body">
+            <div class="card">
+                <div class="profile-image">
+                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin">
+                </div>
+                <div class="row">
+                    <div class="col-sm-3">
+                        <h6 class="mb-0">Information</h6>
+                    </div>
+                    <div th:text="${#strings.substring(customer.email, 0, 1).toUpperCase()}">T</div>
+                </div>
+                <hr>
+                <div class="profile-info">
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <h6 class="mb-0">Full Name</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary" th:text="${customer.firstname} + ' ' + ${customer.lastname}">
+                            Kenneth Valdez
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <h6 class="mb-0">Email</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary" th:text="${customer.email}">
+                            fip@jukmuh.al
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <h6 class="mb-0">Phone</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary" th:text="${customer.phonenumber}">
+                            (239) 816-9029
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-sm-3">
+                            <h6 class="mb-0">Address</h6>
+                        </div>
+                        <div class="col-sm-9 text-secondary" th:text="${customer.city}">
+                            Bay Area, San Francisco, CA
+                        </div>
+                    </div>
+                    <div th:if="${session.user != null}">
+                        <p>Logged in as: <span th:text="${session.customer.email}"></span></p>
+                    </div>
+                </div>
+                <!-- Logout button container positioned to the bottom right -->
+                <div class="logout-container">
+                    <a class="btn btn-info" th:href="@{/customer/login}">Logout</a>
+                </div>
+            </div>
+        </div>
+    </div>
+	<script>
+	    // Optional: Dynamically insert logged-in user email if needed
+	    const userEmail = 'fip@jukmuh.al';  // You can set this dynamically based on session
+	    document.getElementById('user-email').textContent = userEmail;
+	</script>
+  </body>
+</html>

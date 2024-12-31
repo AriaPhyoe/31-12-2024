@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+   <!-- Required meta tags -->
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   <title>Shop Admin Dashboard Template</title>
+   <!-- Favicon -->
+   <link th:href="@{/images/favicon.ico}" rel="shortcut icon" />
+   <!-- Bootstrap CSS -->
+   <link th:href="@{/css/bootstrap.min.css}" rel="stylesheet">
+   <!-- Chartist CSS -->
+   <link th:href="@{/js/chartist/chartist.min.css}" rel="stylesheet">
+   <!-- Typography CSS -->
+   <link th:href="@{/css/typography.css}" rel="stylesheet">
+   <!-- Style CSS -->
+   <link th:href="@{/css/style.css}" rel="stylesheet">
+   <!-- Responsive CSS -->
+   <link th:href="@{/css/deli.css}" rel="stylesheet">
+</head>
+
+<body class="sidebar-main-active right-column-fixed header-top-bgcolor" style="background-color: rgb(204, 44, 44);">
+   <!-- loader Start -->
+   <!--<div id="loading">
+      <div id="loading-center"></div>
+   </div>-->
+   <!-- loader END -->
+   <!-- Wrapper Start -->
+   <div class="wrapper">
+      <!-- Sidebar  -->
+      <!-- Include your sidebar markup here -->
+
+      <!-- TOP Nav Bar -->
+      <!-- Include your top nav bar markup here -->
+
+      <!-- Page Content  -->
+      <div id="content-page" class="content-page">
+         <div class="container-fluid">
+            <div class="row">
+               <div class="col-lg-8">
+                  <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
+                     <div class="iq-card-header d-flex justify-content-between">
+                        <div class="iq-header-title">
+                           <h4 class="card-title">Delivery Order Checking</h4>
+                        </div>
+                     </div>
+                     <div class="iq-card-body">
+                        <div class="table-responsive">
+                           <table class="table mb-0 table-borderless">
+                              <thead>
+                                 <tr>
+                                    <th scope="col">Shop Admin Email</th>
+                                    <th scope="col">Shop Name</th>
+                                    <th scope="col">Shop Address</th>
+                                    <th scope="col">Customer Address</th>
+                                    <th scope="col">Delivery Order DateTime</th>
+                                    <th scope="col">Order Status</th>
+									<!--<th>Add Delivery</th>-->
+                                 </tr>
+                              </thead>
+							  <tbody>
+				                 <tr th:each="delidetail : ${delidetail}">
+				  	               <td th:text="${delidetail.shop.email}"></td>
+				                     <td th:text="${delidetail.shop.shopname}"></td>
+				                     <td th:text="${delidetail.shop.address}"></td>
+				                     <td th:text="${delidetail.orders.customeraddress}"></td>
+				                     <td th:text="${delidetail.delidatetime}"></td>
+				  	                
+				  	                <td>
+				                          <div th:if="${!delidetail.status}">
+				                              <span class="Request">Request</span>
+				                          </div>
+				                          <div th:if="${delidetail.status}">
+				                              <span class="Received">Received</span>
+				                          </div>       
+				                      </td>
+				                      <!--<td>
+				  	                    <div th:if="${!delidetail.status}">
+				  	                            <form th:action="@{/delidetailsys/confirmrequest/{id}(id=${delidetail.deliverydetailId})}" method="post">
+				  	                                <button type="submit" class="button confirm">Confirm</button>
+				  	                            </form>
+				                          </div>
+				                      </td>    --> 
+				  	        </tr>
+				             </tbody>
+                           </table>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+   <!-- Wrapper END -->
+
+   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+   <script th:src="@{/js/jquery.min.js}"></script>
+   <script th:src="@{/js/popper.min.js}"></script>
+   <script th:src="@{/js/bootstrap.min.js}"></script>
+</body>
+
+</html>

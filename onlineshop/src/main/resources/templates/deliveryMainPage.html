@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+   <!-- Required meta tags -->
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   <meta name="description" content="">
+   <meta name="author" content="">
+   <title>Delivery Main Dashboard Template</title>		
+  
+   <link rel="stylesheet" th:href="@{/css/Deliverybootstrap.min.css}">
+   <link rel="stylesheet" th:href="@{/css/Delistyle.css}">
+   <link rel="stylesheet" th:href="@{/css/Deliresponsive.css}">
+   <link rel="stylesheet" th:href="@{/css/deligoogleapi.css}">
+   <link rel="stylesheet" th:href="@{/css/jquery.mCustomScrollbar.min.css}">
+   <link rel="stylesheet" th:href="@{/css/deliFontawesome.css}">
+   <link rel="icon" th:href="@{/deliveryPage/images/fevicon.png}" type="image/gif" />
+   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+   
+</head>
+   <body>
+      <!-- header section start -->
+      <div class="header_section">
+         <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+               <a class="navbar-brand" href="index.html"><img th:src="@{/images/logo.png}"></a>
+               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+               <span class="navbar-toggler-icon"></span>
+               </button>
+               <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav ml-auto">
+                     <li class="nav-item active">					
+                        <a class="nav-link" href="#" th:href="@{/delisys/main}"><span class="padding5"><i class="material-symbols-outlined">home</i></span>Home</a>
+                     </li>
+                     <!--<li class="nav-item">
+                        <a class="nav-link" href="about.html"><span class="padding5"><i class="material-symbols-outlined">apps</i></span>About</a>
+                     </li>-->
+                  </ul>
+                  <form class="form-inline my-2 my-lg-0">
+                     <div class="login_bt">
+                        <ul>
+                           <li><a href="#" th:href="@{/delisys/logout}"><i class="material-symbols-outlined">logout</i>Logout</a></li>
+<!--                           <li><a href="#"><i class="fa fa-user" aria-hidden="true"></i></a></li>
+-->                        </ul>
+                     </div>
+                  </form>
+               </div>
+            </nav>
+         </div>
+         <!-- banner section start --> 
+         <div class="banner_section layout_padding">
+            <div class="container">
+               <div class="row">
+                  <div class="col-md-4">
+                     <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+                        <div class="carousel-inner">
+                           <div class="carousel-item active">
+                              <div class="banner_img"><img th:src="@{/images/banner-img.png}"></div>
+                           </div>
+                           <div class="carousel-item">
+                              <div class="banner_img"><img th:src="@{/images/banner-img.png}"></div>
+                           </div>
+                           <div class="carousel-item">
+                              <div class="banner_img"><img th:src="@{/images/banner-img.png}"></div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="col-md-8">
+                     <h1 class="banner_taital">Delivery</h1>
+                     <p class="banner_text">We are servicing the best!!</p>
+                     <!-- select box section start -->
+                     <div class="container">
+                        <div class="select_box_section">
+                           <div class="select_box_main">
+                              
+                           </div>
+                           <div class="search_btn"><a th:href="@{/delidetailsys/showdeliveryorderrequest}">Show Delivery Orders</a></div>
+                        </div>
+                     </div>
+                     <!-- select box section end -->
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      
+	  <!-- JavaScript Files -->
+	  <script th:src="@{/js/Delibootstrap.min.js}"></script>
+	  <script th:src="@{/js/Delipopper.min.js}"></script>
+	  <script th:src="@{/js/Delibootstrap.bundle.min.js}"></script>
+	  <script th:src="@{/js/jquery-3.0.0.min.js}"></script>
+	  <script th:src="@{/js/plugin.js}"></script>
+	  <script th:src="@{/js/Delicustom.js}"></script>
+	  <script th:src="@{/js/jquery.mCustomScrollbar.concat.min.js}"></script>
+   </body>
+</html>

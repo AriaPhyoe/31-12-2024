@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+   <!-- Required meta tags -->
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   <meta name="description" content="">
+   <meta name="author" content="">
+   <title>Delivery Register Dashboard Template</title>		
+   <!-- MATERIAL DESIGN ICONIC FONT -->
+   <link rel="stylesheet" href="css/fonts/material-design-iconic-font/css/material-design-iconic-font.min.css">
+
+   <!-- STYLE CSS -->
+   <link rel="stylesheet" th:href="@{/css/deliveryRegister.css}">
+</head>
+
+<body>
+
+   <div class="wrapper" th:style="'background-image: url(' + @{/images/coverRed.jpg} + ');'">
+      <div class="inner">
+         <div class="image-holder">
+            <img th:src="@{/images/motor.jpg}" alt="">
+         </div>
+         <form th:action="@{/delisys/registerprocess}" method="post" th:object="${delivery}">
+            <h3>Delivery Registration Form</h3>
+
+            <!-- First Name and Last Name -->
+            <div class="form-group">
+               <input type="text" placeholder="First Name" class="form-control" th:field="*{firstname}">
+               <input type="text" placeholder="Last Name" class="form-control" th:field="*{lastname}">
+            </div>
+
+            <!-- Delivery Username (You may bind this to a field in Delivery if needed) -->
+            <div class="form-wrapper">
+               <input type="text" placeholder="Username" class="form-control" th:field="*{deliveryname}">
+               <i class="zmdi zmdi-account"></i>
+            </div>
+
+            <!-- Delivery Email Address -->
+            <div class="form-wrapper">
+               <input type="text" placeholder="Email Address" class="form-control" th:field="*{deliveryemail}">
+               <i class="zmdi zmdi-email"></i>
+            </div>
+
+            <!-- Delivery Address -->
+            <div class="form-wrapper">
+               <input type="text" placeholder="Address" class="form-control" th:field="*{deliveryaddress}">
+               <i class="zmdi zmdi-account"></i>
+            </div>
+
+            <!-- Shop Admin Email Address -->
+            <div class="form-wrapper">
+               <input type="text" placeholder="Shop Admin Email Address" class="form-control" th:field="*{shop.email}">
+               <i class="zmdi zmdi-email"></i>
+            </div>
+
+            <!-- Password and Phone Number -->
+            <div class="form-group">
+               <input type="password" placeholder="Password" class="form-control" th:field="*{password}">
+               <input type="text" placeholder="Phone Number" class="form-control" th:field="*{deliveryphonenumber}">
+            </div>
+
+            <!-- Register Button -->
+            <button type="submit">Register
+               <i class="zmdi zmdi-arrow-right"></i>
+            </button>
+         </form>
+      </div>
+   </div>
+
+</body>
+</html>

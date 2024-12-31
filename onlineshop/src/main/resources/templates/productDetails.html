@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Item Details</title>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+<style>
+body {
+	font-family: 'Arial', sans-serif;
+	background-color: #1f4787; /* Light luxury pale yellow background */
+	color: #333; /* Elegant dark text color */
+}
+ 
+.main-content {
+	width: 70%;
+	margin: 50px auto;
+	background-color: #f2f5f4; /* Luxury pale yellow container */
+	border-radius: 15px;
+	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+	padding: 30px;
+	height: 500px;
+}
+ 
+.details-container {
+	display: flex; /* Use flexbox for side-by-side layout */
+	justify-content: space-between; /* Space between the items */
+}
+ 
+.product-image {
+	flex: 1; /* Take half of the available space */
+	max-width: 100%; /* Ensure the image is responsive */
+	border-radius: 10px; /* Rounded corners */
+	margin-right: 20px; /* Space between image and info */
+}
+ 
+.info-container {
+	flex: 1; /* Take the other half of the available space */
+}
+ 
+.item-details p {
+	font-size: 1.2em;
+	line-height: 1.6;
+	color: #555;
+}
+ 
+.item-details strong {
+	color: #1f4787; /* Gold luxury text for labels */
+}
+ 
+.quantity-controls {
+	display: flex;
+	align-items: center;
+	margin-top: 15px;
+}
+ 
+.quantity-controls button {
+	background-color: #1f4787; /* Luxury gold for buttons */
+	color: #f9f7f7;
+	border: none;
+	padding: 10px 15px;
+	font-size: 1.2em;
+	cursor: pointer;
+	border-radius: 5px;
+	transition: background-color 0.3s ease;
+}
+ 
+.quantity-controls button:hover {
+	background-color: #1f4787; /* Darker gold on hover */
+}
+ 
+.quantity-controls input[type="text"] {
+	width: 50px;
+	text-align: center;
+	margin: 0 10px;
+	font-size: 1.2em;
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	padding: 8px;
+}
+ 
+.actions {
+	margin-top: 25px;
+	display: flex;
+	gap: 20px;
+}
+ 
+.actions button {
+	background-color: #1f4787; /* Luxury gold button */
+	color: #fff;
+	border: none;
+	padding: 10px 20px;
+	font-size: 1.1em;
+	cursor: pointer;
+	border-radius: 5px;
+	transition: background-color 0.3s ease;
+}
+ 
+.actions button:hover {
+	background-color: #1f4787; /* Darker gold on hover */
+}
+ 
+.actions form {
+	display: inline-block;
+}
+ 
+.actions .read-more {
+	background-color: #1f4787;
+}
+ 
+.actions .add-to-cart {
+	background-color: #1f4787; /* Slightly lighter gold for add to cart */
+}
+ 
+.actions .add-to-cart:hover {
+	background-color: #1f4787;
+}
+</style>
+</head>
+<body>
+	<div class="main-content">
+		<div class="item-details">
+			<div class="details-container">
+				<!-- Image Tag for Item Product -->
+				<img th:src="@{'/images/' + ${product.image}}" alt="Product Image"
+					class="product-image" />
+					
+					
+ 
+				<div class="info-container">
+					<p>
+						<strong>Name:</strong> <span th:text="${product.productName}"></span>
+					</p>
+					<p>
+						<strong>Category:</strong> <span th:text="${product.category}"></span>
+					</p>
+					<p>
+						<strong>Description:</strong> <span
+							th:text="${product.description}"></span>
+					</p>
+					<p>
+						<strong>Price:</strong> $<span th:text="${product.price}"></span>
+					</p>
+					<p>
+						<strong>Available Quantity:</strong> <span id="productquantity"
+							th:text="${product.productquantity}"></span>
+					</p>
+ 
+					<div class="quantity-controls">
+						<button type="button" class="quantity-decrease decrease"
+							onclick="decrementQuantity()">-</button>
+						<input type="text" name="productQuantity" id="quantity"
+							th:value="1" th:attr="max=${product.productquantity}" />
+						<button type="button" class="quantity-increase increase"
+							onclick="incrementQuantity()">+</button>
+					</div>
+ 
+					<div class="actions">
+						<form th:action="@{/order/new/{id}(id=${product.productId})}" method="post" class="read-more-form">
+                            <input type="hidden" name="productqty" id="productqty-buy"/>
+                            <button type="submit" class="read-more" onclick="syncDateTime()">Buy</button>
+                        </form>
+ 
+						<form
+							th:action="@{/mainsys/addToCart/{id}(id=${product.productId})}"
+							method="post" class="add-to-cart-form">
+							<input type="hidden" name="productQuantity"
+								id="productqty-addToCart" th:value="${quantity}" />
+							<button type="submit" class="add-to-cart"
+								onclick="syncQuantity()">Add To Cart</button>
+						</form>
+					</div>
+ 
+				</div>
+			</div>
+		</div>
+	</div>
+ 
+ 
+	<script>
+		function incrementQuantity() {
+			var quantityInput = document.getElementById('quantity');
+			var maxQuantity = parseInt(quantityInput.getAttribute('max'));
+			if (parseInt(quantityInput.value) < maxQuantity) {
+				quantityInput.value = parseInt(quantityInput.value) + 1;
+				syncQuantity(); // Update hidden inputs
+			}
+		}
+ 
+		function decrementQuantity() {
+			var quantityInput = document.getElementById('quantity');
+			if (parseInt(quantityInput.value) > 1) {
+				quantityInput.value = parseInt(quantityInput.value) - 1;
+				syncQuantity(); // Update hidden inputs
+			}
+		}
+ 
+		function syncQuantity() {
+			var quantityValue = document.getElementById('quantity').value;
+			document.getElementById('productqty-buy').value = quantityValue;
+			document.getElementById('productqty-addToCart').value = quantityValue;
+		}
+ 
+		function syncDateTime() {
+			var dateTimeInput = document.getElementById('datetime-buy').value;
+		}
+ 
+		syncQuantity();
+	</script>
+</body>
+</html>

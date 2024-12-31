@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+   <!-- Required meta tags -->
+   <meta charset="utf-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+   <meta name="description" content="">
+   <meta name="author" content="">
+   <title>Shop Admin Dashboard Template</title>
+   <!-- Favicon -->
+   <link rel="stylesheet" th:href="@{/css/shopAdminHome.css}">
+   <link rel="stylesheet" th:href="@{/css/shopHome.css}">
+   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+</head>
+<body>
+  <div class="container">
+    <input type="checkbox" id="flip">
+    <div class="cover">
+      <div class="front">
+        <img th:src="@{/images/logIn.webp}" alt="">
+      </div>
+    </div>
+    <div class="forms">
+      <div class="form-content">
+        <div class="login-form">
+          <div class="title">Login</div>
+          <form th:action="@{/shop/loginprocess}" method="post">
+            <div class="input-boxes">
+              <!-- Email Input -->
+              <div class="input-box">
+                <i class="material-symbols-outlined">mail</i>
+                <input type="text" name="email" placeholder="Enter your email" required> <!-- Added name="email" -->
+              </div>
+              <!-- Password Input -->
+              <div class="input-box">
+                <i class="material-symbols-outlined">lock_reset</i>
+                <input type="password" name="password" placeholder="Enter your password" required> <!-- Added name="password" -->
+              </div>
+              <div class="text"><a href="#">Forgot password?</a></div>
+              <div class="button input-box">
+                <input type="submit" value="Submit">
+              </div>
+              <div class="text sign-up-text">Don't have an account? <a th:href="@{/shop/register}">Register now</a></div>
+            </div>
+          </form>
+          <div th:if="${session.shopemail != null}">
+            <p>Logged in as: <span th:text="${session.shopemail}"></span></p>
+            <a th:href="@{/shop/logout}">Logout</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

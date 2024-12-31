@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delivery Order Confirm Page</title>
+    
+    <style>
+    
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #f8f9fa;
+}
+
+h1 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.table-container {
+    width: 100%;
+    overflow-y: auto;
+    max-height: 550px; /* Adjust as needed */
+    margin-top: 100px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 12px;
+    text-align: left;
+}
+
+th {
+    background-color: #007bff;
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+}
+
+tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+ .button {
+    display: inline-block;
+    padding: 8px 16px;
+    text-align: center;
+    color: red;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 25px;
+    font-weight: bold;
+    border: none;
+    cursor: pointer;
+}
+
+.cash {
+    background-color: #007bff;
+    margin: 20px auto;
+    display: block;
+    width: 150px;
+}
+
+.cash:hover {
+    background-color: #0056b3;
+}
+
+.delete-additem {
+    background-color: #dc3545;
+    margin: 0;
+    padding: 8px 12px;
+    font-size: 12px;
+}
+
+.delete-additem:hover {
+    background-color: #c82333;
+}
+        
+    </style>
+</head>
+<body>
+    <h1>Delivery Order Requests</h1>
+    <div class="table-container">
+        <table>
+            <thead>
+                
+                    <tr>
+                        <th>ShopAdmin Email</th>
+                        <th>Shop Name</th>
+                        <th>Shop Address</th>
+                        <th>User Address</th>
+                        <th>Delivery Order DateTime</th>
+                        <th>Delivery Order Status</th>
+                        <th>Add Delivery</th>
+                    </tr>
+               
+            </thead>
+            <tbody>
+                <tr th:each="delidetail : ${delidetail}">
+		               <td th:text="${delidetail.shop.email}"></td>
+                    <td th:text="${delidetail.shop.shopname}"></td>
+                    <td th:text="${delidetail.shop.shopaddress}"></td>
+                    <td th:text="${delidetail.orders.customeraddress}"></td>
+                    <td th:text="${delidetail.delidatetime}"></td>
+		                
+		                <td>
+	                        <div th:if="${!delidetail.status}">
+	                            <span class="Request">Request</span>
+	                        </div>
+	                        <div th:if="${delidetail.status}">
+	                            <span class="Received">Received</span>
+	                        </div>       
+	                    </td>
+	                    <td>
+		                    <div th:if="${!delidetail.status}">
+		                            <form th:action="@{/delidetailsys/confirmrequest/{id}(id=${delidetail.deliverydetailid})}" method="post">
+		                                <button type="submit" class="button confirm">Confirm</button>
+		                            </form>
+	                        </div>
+	                    </td>     
+		        </tr>
+            </tbody>
+        </table>
+    </div>
+    
+</body>
+</html>
